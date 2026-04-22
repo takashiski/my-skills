@@ -7,6 +7,8 @@ GitHub で管理し、`gh skill` で配布、プレビュー、インストー�
 ```text
 my-skills/
   skills/
+    distilling-zenn-articles/
+      SKILL.md
     test-spec-review/
       SKILL.md
       README.md
@@ -24,10 +26,12 @@ my-skills/
 
 ```powershell
 gh skill preview <OWNER>/<REPO> skills/test-spec-review
+gh skill preview <OWNER>/<REPO> skills/distilling-zenn-articles
 gh skill install <OWNER>/<REPO> skills/test-spec-review --agent claude-code --scope user
 ```
 
 ## 補足
 
 - GitHub 公開用、配布用はこの `my-skills/` 配下を正とする
-- 各スキル個別の説明は `skills/<skill-name>/README.md` を参照する
+- 各スキルの正本は `skills/<skill-name>/SKILL.md` とする
+- 補助ドキュメントがある場合のみ `references/` や README を使う
