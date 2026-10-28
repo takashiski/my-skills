@@ -1,37 +1,63 @@
 # my-skills
 
-GitHub で管理し、`gh skill` で配布、プレビュー、インストールするためのスキル置き場です。
+takashiski の個人用 Claude Code プラグインマーケットプレイスです。
+
+## インストール
+
+```text
+/plugin marketplace add takashiski/my-skills
+/plugin install ai-native-sdlc@my-skills
+```
+
+ローカルで試す場合:
+
+```text
+/plugin marketplace add D:/dev/my-skills
+```
+
+## 収録プラグイン
+
+| プラグイン | 内容 |
+| --- | --- |
+| [ai-native-sdlc](plugins/ai-native-sdlc/) | AI ネイティブ SDLC プレイブックのスキル化。intent → spec → plan → 検証 → レビュー → 運用検知のループ |
 
 ## ディレクトリ構成
 
 ```text
 my-skills/
-  skills/
-    distilling-zenn-articles/
-      SKILL.md
-    test-spec-review/
-      SKILL.md
-      README.md
-      references/
-        markdown-draft-template.md
-        review-result-template.md
-        review-notes.md
+  .claude-plugin/
+    marketplace.json        # マーケットプレイス定義(plugins 配列に登録する)
+  plugins/
+    <plugin-name>/
+      .claude-plugin/
+        plugin.json         # プラグインのメタデータ
+      skills/
+        <skill-name>/
+          SKILL.md
+          references/       # 任意。スキルから参照する補助資料
+      agents/               # 任意。サブエージェント定義
+      commands/             # 任意。スラッシュコマンド
+      hooks/                # 任意。hooks.json
 ```
 
-## 使い方
+## プラグインを追加する手順
 
-このリポジトリを GitHub に push したあと、`gh skill` で扱います。
+1. `plugins/<plugin-name>/.claude-plugin/plugin.json` を作る(`name` はディレクトリ名と揃える)
+2. `plugins/<plugin-name>/skills/<skill-name>/SKILL.md` にスキルを置く(frontmatter に `name` と `description` 必須)
+3. `.claude-plugin/marketplace.json` の `plugins` 配列にエントリを追加する
 
-例:
-
-```powershell
-gh skill preview <OWNER>/<REPO> skills/test-spec-review
-gh skill preview <OWNER>/<REPO> skills/distilling-zenn-articles
-gh skill install <OWNER>/<REPO> skills/test-spec-review --agent claude-code --scope user
+```json
+{
+  "name": "<plugin-name>",
+  "source": "./plugins/<plugin-name>",
+  "description": "一行説明",
+  "version": "0.1.0"
+}
 ```
 
-## 補足
+4. `claude plugin validate .` で検証してから push
 
-- GitHub 公開用、配布用はこの `my-skills/` 配下を正とする
-- 各スキルの正本は `skills/<skill-name>/SKILL.md` とする
-- 補助ドキュメントがある場合のみ `references/` や README を使う
+## 運用ルール
+
+- 各プラグインの `version` は変更のたびに上げる(利用側の更新検知に使われる)
+- 改行コードは LF に統一(`.gitattributes` で固定)

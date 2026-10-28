@@ -1,0 +1,41 @@
+# 逸脱検知と段階的対応の設定例(バージョン管理する)
+# 検知そのものは決定的なルールで行い、Claude は対応段階でだけ起動する。
+
+baseline:
+  window: 14d          # ローリングベースラインの期間
+  min_samples: 200
+
+rules: western_electric  # 1点が3σ超、連続3点中2点が2σ超、など
+
+metrics:
+  - name: ci_failure_rate
+    source: github_actions
+    query: "failed_runs / total_runs per 1h on main"
+  - name: post_deploy_5xx_rate
+    source: datadog
+    query: "sum:http.5xx{env:prod}.as_rate() / sum:http.requests{env:prod}.as_rate()"
+    window_after_deploy: 30m
+
+tiers:
+  - level: 1sigma
+    action: log
+
+  - level: 2sigma
+    action: diagnose
+    claude:
+      mode: headless
+      permissions: read-only        # 読み取りのみ。書き込み・デプロイ不可
+      output: intent                # intent/<date>-<metric>.md を作成し PR
+      prompt: >
+        {metric} がベースラインから 2σ 逸脱した。読み取り専用で原因を調査し、
+        事実と推測を分けて intent.md(source: detector)を書いて PR を作成せよ。
+
+  - level: 3sigma
+    action: propose
+    claude:
+      mode: headless
+      permissions: open-pr-only     # PR 作成まで。マージ・本番操作は不可
+      allowed_runbooks:
+        - rollback-last-deploy      # 事前承認済みのものだけ
+      output: [intent, pull_request]
+    notify: ["#incident", "oncall"]

@@ -1,0 +1,13 @@
+{
+  "name": "ai-native-sdlc",
+  "version": "0.1.0",
+  "description": "AI ネイティブ SDLC プレイブック(Plan / Design / Build / Test / Deploy / Maintain)を、成果物をバージョン管理でつなぐループとして実践するためのスキル集",
+  "author": {
+    "name": "takashiski",
+    "url": "https://github.com/takashiski"
+  },
+  "homepage": "https://claude.com/ja/resources/articles/the-ai-native-sdlc-playbook",
+  "repository": "https://github.com/takashiski/my-skills",
+  "license": "MIT",
+  "keywords": ["sdlc", "intent", "spec", "plan-mode", "review", "hooks", "evals"]
+}
