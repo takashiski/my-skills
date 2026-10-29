@@ -15,7 +15,30 @@
       "description": "AI ネイティブ SDLC プレイブックをスキル化。intent.md → spec.md → plan.md → テスト/検証 → REVIEW.md によるレビュー → 運用での検知を intent に戻すループを回す。",
       "version": "0.1.0",
       "category": "development",
-      "keywords": ["sdlc", "intent", "spec", "plan-mode", "review", "hooks", "evals"]
+      "keywords": [
+        "sdlc",
+        "intent",
+        "spec",
+        "plan-mode",
+        "review",
+        "hooks",
+        "evals"
+      ]
+    },
+    {
+      "name": "slide-info-design",
+      "source": "./plugins/slide-info-design",
+      "description": "天野由貴『情報デザインを意識したスライド作成入門』(CC BY-SA 4.0)をスキル化。視線・配置・グラフ・フォント・色・構成の原則でスライドを作成・レビューする。",
+      "version": "0.1.0",
+      "category": "productivity",
+      "keywords": [
+        "slides",
+        "presentation",
+        "information-design",
+        "color",
+        "chart",
+        "font"
+      ]
     }
   ]
 }

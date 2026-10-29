@@ -1,0 +1,13 @@
+{
+  "name": "slide-info-design",
+  "version": "0.1.0",
+  "description": "天野由貴『情報デザインを意識したスライド作成入門』(CC BY-SA 4.0)をスキル化。視線・配置・グラフ・フォント・色・構成の原則でスライドを作り、レビューする",
+  "author": {
+    "name": "takashiski",
+    "url": "https://github.com/takashiski"
+  },
+  "homepage": "https://home.riise.hiroshima-u.ac.jp/~ten/",
+  "repository": "https://github.com/takashiski/my-skills",
+  "license": "CC-BY-SA-4.0",
+  "keywords": ["slides", "presentation", "information-design", "powerpoint", "color", "chart", "font"]
+}

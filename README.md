@@ -7,6 +7,7 @@ takashiski の個人用 Claude Code プラグインマーケットプレイス�
 ```text
 /plugin marketplace add takashiski/my-skills
 /plugin install ai-native-sdlc@my-skills
+/plugin install slide-info-design@my-skills
 ```
 
 ローカルで試す場合:
@@ -20,6 +21,7 @@ takashiski の個人用 Claude Code プラグインマーケットプレイス�
 | プラグイン | 内容 |
 | --- | --- |
 | [ai-native-sdlc](plugins/ai-native-sdlc/) | AI ネイティブ SDLC プレイブックのスキル化。intent → spec → plan → 検証 → レビュー → 運用検知のループ |
+| [slide-info-design](plugins/slide-info-design/) | 『情報デザインを意識したスライド作成入門』のスキル化。スライド作成・レビュー(CC BY-SA 4.0) |
 
 ## ディレクトリ構成
 
